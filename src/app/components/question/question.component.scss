@@ -1,0 +1,230 @@
+// src/app/components/question/question.component.scss
+
+.question-card {
+    margin-bottom: 20px;
+  }
+  
+  .question-header {
+    margin-bottom: 25px;
+    
+    h2 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    
+    .question-description {
+      color: #7f8c8d;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .question-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+    
+    .tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      background-color: #ecf0f1;
+      color: #7f8c8d;
+      
+      &.difficulty {
+        &.easy {
+          background-color: #d4efdf;
+          color: #27ae60;
+        }
+        
+        &.medium {
+          background-color: #fdebd0;
+          color: #f39c12;
+        }
+        
+        &.hard {
+          background-color: #f9ebea;
+          color: #c0392b;
+        }
+      }
+      
+      &.category {
+        background-color: #d6eaf8;
+        color: #2980b9;
+      }
+    }
+  }
+  
+  .answer-options {
+    margin-bottom: 20px;
+  }
+  
+  .answer-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &:hover:not(.correct):not(.incorrect) {
+      background-color: #f8f9fa;
+      border-color: #bdc3c7;
+    }
+    
+    &.selected {
+      background-color: #edf7fd;
+      border-color: #3498db;
+    }
+    
+    &.correct {
+      background-color: #d4efdf;
+      border-color: #2ecc71;
+    }
+    
+    &.incorrect {
+      background-color: #f9ebea;
+      border-color: #e74c3c;
+    }
+    
+    .option-marker {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #ecf0f1;
+      color: #7f8c8d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      flex-shrink: 0;
+      
+      .selected & {
+        background-color: #3498db;
+        color: #fff;
+      }
+      
+      .correct & {
+        background-color: #2ecc71;
+        color: #fff;
+      }
+      
+      .incorrect & {
+        background-color: #e74c3c;
+        color: #fff;
+      }
+    }
+    
+    .option-text {
+      flex-grow: 1;
+      font-size: 16px;
+    }
+    
+    .option-check {
+      margin-left: 10px;
+      color: #3498db;
+      
+      .correct & {
+        color: #2ecc71;
+      }
+      
+      .incorrect & {
+        color: #e74c3c;
+      }
+    }
+  }
+  
+  .explanation-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    
+    h3 {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .explanation-content {
+      p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+    }
+  }
+  
+  .answer-explanations {
+    margin-top: 20px;
+    
+    .answer-explanation {
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      background-color: #f8f9fa;
+      
+      &.correct {
+        background-color: #d4efdf;
+      }
+      
+      &.incorrect {
+        background-color: #f9ebea;
+      }
+      
+      h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: #2c3e50;
+        
+        .correct & {
+          color: #27ae60;
+        }
+        
+        .incorrect & {
+          color: #c0392b;
+        }
+      }
+      
+      p {
+        line-height: 1.6;
+      }
+    }
+  }
+  
+  .reference-links {
+    margin-top: 15px;
+    
+    h5 {
+      font-size: 14px;
+      margin-bottom: 5px;
+      color: #7f8c8d;
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      
+      li {
+        margin-bottom: 5px;
+      }
+      
+      a {
+        color: #3498db;
+        text-decoration: none;
+        word-break: break-all;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  

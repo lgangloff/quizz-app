@@ -1,0 +1,196 @@
+[
+    {
+      "id": 1,
+      "question": "Which modules form the core container of the Spring Framework?",
+      "description": "Select the correct combination of modules that constitute Spring's Core Container.",
+      "answers": {
+        "a": {
+          "description": "Core, Beans, Context, SpEL",
+          "correct": "true",
+          "explanation": "The Core Container consists of four modules:\n- **Core** (basic IoC/DI)\n- **Beans** (bean factory implementations)\n- **Context** (ApplicationContext)\n- **SpEL** (Spring Expression Language)",
+          "links": [
+            "https://en.wikipedia.org/wiki/Spring_Framework",
+            "https://www.codingshuttle.com/spring-boot-hand-book/spring-architecture",
+            "https://javaconceptoftheday.com/spring-framework-modules/"
+          ]
+        },
+        "b": {
+          "description": "Core, AOP, MVC, Security",
+          "correct": "false",
+          "explanation": "AOP and MVC belong to separate layers (Aspect-Oriented Programming and Web respectively). Security is an extension module.",
+          "links": [
+            "https://www.codingshuttle.com/spring-boot-hand-book/spring-architecture",
+            "https://javaconceptoftheday.com/spring-framework-modules/"
+          ]
+        },
+        "c": {
+          "description": "Beans, JDBC, ORM, Context",
+          "correct": "false",
+          "explanation": "JDBC and ORM are part of the Data Access/Integration layer, not the Core Container.",
+          "links": [
+            "https://javaconceptoftheday.com/spring-framework-modules/"
+          ]
+        }
+      },
+      "multiple_correct_answers": "false",
+      "explanation": "The Core Container provides foundational IoC/DI capabilities through these four modules.",
+      "tags": ["Spring Core", "Architecture"],
+      "category": "Introduction au framework Spring",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 2,
+      "question": "What is the default behavior of @ComponentScan?",
+      "description": "Understand how @ComponentScan operates without explicit configuration.",
+      "answers": {
+        "a": {
+          "description": "Scans all classes in the classpath",
+          "correct": "false",
+          "explanation": "This would be inefficient and is not the default behavior.",
+          "links": [
+            "https://foojay.io/today/spring-internals-of-componentscan/",
+            "https://codingnomads.com/spring-componentscan-annotation"
+          ]
+        },
+        "b": {
+          "description": "Scans the current package and subpackages",
+          "correct": "true",
+          "explanation": "By default, `@ComponentScan` starts from the package of the `@Configuration` class.",
+          "links": [
+            "https://foojay.io/today/spring-internals-of-componentscan/",
+            "https://codingnomads.com/spring-componentscan-annotation"
+          ]
+        },
+        "c": {
+          "description": "Requires explicit basePackages declaration",
+          "correct": "false",
+          "explanation": "Explicit declaration is optional. Default scanning occurs without it.",
+          "links": [
+            "https://foojay.io/today/spring-internals-of-componentscan/"
+          ]
+        }
+      },
+      "multiple_correct_answers": "false",
+      "explanation": "Default scanning minimizes configuration for standard project structures.",
+      "tags": ["Java Configuration"],
+      "category": "Configuration Java",
+      "difficulty": "Easy"
+    },
+    {
+      "id": 3,
+      "question": "Which dependency injection method is recommended for mandatory dependencies?",
+      "description": "Select the injection type aligned with Spring best practices.",
+      "answers": {
+        "a": {
+          "description": "Setter injection",
+          "correct": "false",
+          "explanation": "Setters allow optional dependencies but don't enforce immutability.",
+          "links": [
+            "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html",
+            "https://dev.to/eidher/spring-injection-types-c6d",
+            "https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring"
+          ]
+        },
+        "b": {
+          "description": "Constructor injection",
+          "correct": "true",
+          "explanation": "Constructor injection ensures dependencies are provided at instantiation. Promotes immutability and null safety.",
+          "links": [
+            "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html",
+            "https://dev.to/eidher/spring-injection-types-c6d",
+            "https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring"
+          ]
+        },
+        "c": {
+          "description": "Field injection",
+          "correct": "false",
+          "explanation": "Discouraged due to testability issues. Makes dependencies implicit.",
+          "links": [
+            "https://dev.to/eidher/spring-injection-types-c6d",
+            "https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring"
+          ]
+        }
+      },
+      "multiple_correct_answers": "false",
+      "explanation": "Constructor injection aligns with modern best practices for required dependencies.",
+      "tags": ["Dependency Injection"],
+      "category": "Gestion des dépendances",
+      "difficulty": "Hard"
+    },
+    {
+      "id": 4,
+      "question": "How to resolve ambiguity when multiple beans implement the same interface?",
+      "description": "Identify the correct approach for explicit bean selection.",
+      "answers": {
+        "a": {
+          "description": "Use @Primary annotation",
+          "correct": "false",
+          "explanation": "@Primary establishes a default but doesn't resolve specific cases.",
+          "links": [
+            "https://foojay.io/today/spring-internals-of-componentscan/",
+            "https://www.javaguides.net/2018/06/spring-qualifier-annotation-example.html"
+          ]
+        },
+        "b": {
+          "description": "Combine @Autowired with @Qualifier",
+          "correct": "true",
+          "explanation": "@Qualifier specifies the exact bean name.",
+          "links": [
+            "https://foojay.io/today/spring-internals-of-componentscan/",
+            "https://www.javaguides.net/2018/06/spring-qualifier-annotation-example.html"
+          ]
+        },
+        "c": {
+          "description": "Rely on variable names matching bean IDs",
+          "correct": "false",
+          "explanation": "Not reliable - depends on exact naming conventions.",
+          "links": [
+            "https://www.javaguides.net/2018/06/spring-qualifier-annotation-example.html"
+          ]
+        }
+      },
+      "multiple_correct_answers": "false",
+      "explanation": "@Qualifier provides explicit control over bean selection.",
+      "tags": ["Dependency Injection"],
+      "category": "Gestion des dépendances",
+      "difficulty": "Medium"
+    },
+    {
+      "id": 5,
+      "question": "What happens when a bean is annotated with @Scope(\"prototype\")?",
+      "description": "Understand bean lifecycle management in Spring.",
+      "answers": {
+        "a": {
+          "description": "Single instance per container",
+          "correct": "false",
+          "explanation": "This describes the default **singleton** scope, not prototype.",
+          "links": [
+            "https://codingnomads.com/spring-componentscan-annotation",
+            "https://www.axopen.com/blog/2019/02/java-spring-les-beans/"
+          ]
+        },
+        "b": {
+          "description": "New instance created for each injection",
+          "correct": "true",
+          "explanation": "Prototype scope creates fresh instances. Each `@Autowired` injection gets a new object.",
+          "links": [
+            "https://codingnomads.com/spring-componentscan-annotation",
+            "https://www.axopen.com/blog/2019/02/java-spring-les-beans/"
+          ]
+        },
+        "c": {
+          "description": "One instance per HTTP session",
+          "correct": "false",
+          "explanation": "This describes **session** scope, used in web applications.",
+          "links": [
+            "https://codingnomads.com/spring-componentscan-annotation"
+          ]
+        }
+      },
+      "multiple_correct_answers": "false",
+      "explanation": "Prototype scope is essential for stateful beans requiring isolation.",
+      "tags": ["Bean Scopes"],
+      "category": "Introduction au framework Spring",
+      "difficulty": "Medium"
+    }
+  ]

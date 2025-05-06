@@ -1,0 +1,64 @@
+<!-- src/app/components/quiz/quiz.component.html -->
+
+<div class="quiz-container">
+    <header class="quiz-header">
+      <h1>Quiz Spring Framework</h1>
+      <div class="progress-bar">
+        <div class="progress-indicator" 
+             [style.width]="(questions.length > 0 ? (currentQuestionIndex + 1) / questions.length * 100 : 0) + '%'">
+        </div>
+      </div>
+      <div class="question-counter">
+        Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}
+      </div>
+    </header>
+  
+    <div *ngIf="loading" class="loading">
+      <p>Chargement des questions...</p>
+    </div>
+  
+    <div *ngIf="!loading && !quizCompleted" class="quiz-content">
+      <!-- Pagination des questions -->
+      <div class="question-pagination">
+        <button 
+          *ngFor="let question of questions; let i = index" 
+          [class.active]="i === currentQuestionIndex"
+          [class.answered]="question.userAnswer"
+          (click)="goToQuestion(i)">
+          {{ i + 1 }}
+        </button>
+      </div>
+  
+      <!-- Affichage de la question courante -->
+      <app-question
+        *ngIf="questions.length > 0"
+        [question]="questions[currentQuestionIndex]"
+        [showCorrection]="false"
+        (answerSelected)="onAnswerSelected($event.questionId, $event.answer)">
+      </app-question>
+  
+      <!-- Navigation entre questions -->
+      <div class="quiz-navigation">
+        <button class="btn btn-secondary" [disabled]="currentQuestionIndex === 0" (click)="previousQuestion()">
+          Question précédente
+        </button>
+        
+        <button class="btn btn-primary" 
+                *ngIf="currentQuestionIndex < questions.length - 1" 
+                (click)="nextQuestion()">
+          Question suivante
+        </button>
+        
+        <button class="btn btn-success" 
+                *ngIf="currentQuestionIndex === questions.length - 1" 
+                [disabled]="!canSubmitQuiz()"
+                (click)="submitQuiz()">
+          Corriger
+        </button>
+      </div>
+    </div>
+  
+    <!-- Affichage des résultats après soumission -->
+    <app-results *ngIf="quizCompleted" (resetQuiz)="resetQuiz()"></app-results>
+  </div>
+  

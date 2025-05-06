@@ -1,0 +1,53 @@
+<!-- src/app/components/question/question.component.html -->
+
+<div class="question-card">
+    <div class="question-header">
+      <h2>{{ question.question }}</h2>
+      <p class="question-description">{{ question.description }}</p>
+      <div class="question-meta">
+        <span class="tag difficulty" [ngClass]="question.difficulty.toLowerCase()">
+          {{ question.difficulty }}
+        </span>
+        <span class="tag category">{{ question.category }}</span>
+        <span *ngFor="let tag of question.tags" class="tag">{{ tag }}</span>
+      </div>
+    </div>
+  
+    <div class="answer-options">
+      <div *ngFor="let key of answerKeys" 
+           class="answer-option" 
+           [ngClass]="getAnswerClass(key)"
+           (click)="!showCorrection && selectAnswer(key)">
+        <div class="option-marker">{{ key | uppercase }}</div>
+        <div class="option-text">{{ question.answers[key].description }}</div>
+        <div class="option-check" *ngIf="isAnswerSelected(key)">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Affichage de l'explication si en mode correction -->
+    <div *ngIf="showCorrection" class="explanation-section">
+      <h3>Explication</h3>
+      <div class="explanation-content">
+        <p>{{ question.explanation }}</p>
+        
+        <div class="answer-explanations">
+          <div *ngFor="let key of answerKeys" class="answer-explanation" [ngClass]="getAnswerClass(key)">
+            <h4>Option {{ key | uppercase }}: {{ question.answers[key].description }}</h4>
+            <p [innerHTML]="question.answers[key].explanation"></p>
+            
+            <div *ngIf="question.answers[key].links && question.answers[key].links!.length > 0" class="reference-links">
+              <h5>Références:</h5>
+              <ul>
+                <li *ngFor="let link of question.answers[key].links">
+                  <a [href]="link" target="_blank">{{ link }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

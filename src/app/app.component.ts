@@ -1,13 +1,15 @@
+// src/app/app.component.ts
+
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { QuizComponent } from "./components/quiz/quiz.component";
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [QuizComponent]
 })
 export class AppComponent {
-  title = 'quizz-app';
+  title = 'Quiz Spring Framework';
 }

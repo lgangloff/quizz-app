@@ -1,0 +1,49 @@
+<!-- src/app/components/results/results.component.html -->
+
+<div class="results-container">
+    <div class="results-header">
+      <h2>Résultats du Quiz</h2>
+      <div class="score-card" [ngClass]="getScoreClass()">
+        <div class="score-value">{{ results?.score?.toFixed(0) }}%</div>
+        <div class="score-label">Score</div>
+      </div>
+      
+      <div class="results-summary">
+        <div class="summary-item">
+          <div class="summary-value">{{ results?.totalQuestions }}</div>
+          <div class="summary-label">Questions</div>
+        </div>
+        <div class="summary-item correct">
+          <div class="summary-value">{{ results?.correctAnswers }}</div>
+          <div class="summary-label">Correctes</div>
+        </div>
+        <div class="summary-item incorrect">
+          <div class="summary-value">{{ results?.incorrectAnswers }}</div>
+          <div class="summary-label">Incorrectes</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="questions-review">
+      <h3>Révision détaillée</h3>
+      
+      <div class="questions-list">
+        <div *ngFor="let question of questions; let i = index" class="question-review">
+          <h4>Question {{ i + 1 }} <span class="question-status" 
+              [ngClass]="{'correct': question.answers[question.userAnswer!]?.correct === 'true', 
+                          'incorrect': question.answers[question.userAnswer!]?.correct === 'false'}">
+              {{ question.answers[question.userAnswer!]?.correct === 'true' ? 'Correcte' : 'Incorrecte' }}
+            </span>
+          </h4>
+          
+          <!-- Affichage de la question complète avec correction -->
+          <app-question [question]="question" [showCorrection]="true"></app-question>
+        </div>
+      </div>
+    </div>
+    
+    <div class="results-actions">
+      <button class="btn btn-primary" (click)="onResetQuiz()">Recommencer le Quiz</button>
+    </div>
+  </div>
+  
