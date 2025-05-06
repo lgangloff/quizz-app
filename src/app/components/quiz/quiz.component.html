@@ -3,21 +3,33 @@
 <div class="quiz-container">
     <header class="quiz-header">
       <h1>Quiz Spring Framework</h1>
-      <div class="progress-bar">
+      <div class="progress-bar" *ngIf="questions.length">
         <div class="progress-indicator" 
              [style.width]="(questions.length > 0 ? (currentQuestionIndex + 1) / questions.length * 100 : 0) + '%'">
         </div>
       </div>
-      <div class="question-counter">
+      <div class="question-counter" *ngIf="questions.length">
         Question {{ currentQuestionIndex + 1 }} / {{ questions.length }}
       </div>
+      <div class="quiz-url" *ngIf="questions.length == 0">
+
+        <input id="quizUrl" type="url" [(ngModel)]="quizUrl"
+            placeholder="https://pastebin.com/raw/8qDBpULN"/>
+        
+        <button class="btn btn-primary" 
+                [disabled]="!quizUrl"
+                (click)="loadQuestions()">
+          Charger le quizz
+        </button>
+
+      </div>
     </header>
-  
-    <div *ngIf="loading" class="loading">
+
+    <div *ngIf="loading && quizUrl" class="loading">
       <p>Chargement des questions...</p>
     </div>
   
-    <div *ngIf="!loading && !quizCompleted" class="quiz-content">
+    <div *ngIf="questions.length && !quizCompleted" class="quiz-content">
       <!-- Pagination des questions -->
       <div class="question-pagination">
         <button 

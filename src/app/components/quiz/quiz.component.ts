@@ -6,24 +6,25 @@ import { QuizService } from '../../services/quiz.service';
 import { QuestionComponent } from '../question/question.component';
 import { CommonModule } from '@angular/common';
 import { ResultsComponent } from '../results/results.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss'],
   standalone: true,
-  imports: [CommonModule, QuestionComponent, ResultsComponent]
+  imports: [CommonModule, FormsModule, QuestionComponent, ResultsComponent]
 })
 export class QuizComponent implements OnInit {
   questions: Question[] = [];
   currentQuestionIndex = 0;
-  loading = true;
+  loading = false;
   quizCompleted = false;
+  quizUrl?: string;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.loadQuestions();
     this.quizService.isQuizCompleted().subscribe(completed => {
       this.quizCompleted = completed;
     });
@@ -31,7 +32,7 @@ export class QuizComponent implements OnInit {
 
   loadQuestions(): void {
     this.loading = true;
-    this.quizService.loadQuestions().subscribe({
+    this.quizService.loadQuestions(this.quizUrl!).subscribe({
       next: (questions) => {
         this.questions = questions;
         this.quizService.setQuestions(questions);
