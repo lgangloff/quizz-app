@@ -2,26 +2,60 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
 
-## Development server
+## Prompt exemple:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Tu es un examinateur pour la certification spring professionnal.
+Tu dois faire passer un test suivant le principe de cette certification.
+Intègre des questions avec parfois plusieurs choix possible. 
+Intègre également des questions portant sur des exemples de code java valide.
+  
+Le test doit suivre le format json ci dessous:
+[
+  {
+    "id": integer,
+	"date": date,
+    "question": string,
+    "description": markdown,
+    "answers": {
+      "a": {
+			"description" : markdown
+			"correct": boolean,
+			"explanation": markdown,
+			"links": url[]
+		},
+    },
+    "multiple_correct_answers": boolean,
+    "explanation": markdown,
+    "tags": string[],
+    "category": string,
+    "difficulty": string
+  }
+]
+Voici des explications sur les attributs du json:
+"date": Date de creation
+"question": Le titre de la question. Type: string.
+"description": Le détail complet de la question. Type: markdown.
+"answers": Les réponses possibles à la question. De 0 à 5 réponses possibles. Chaque question a un index qui est une lettre de l'alphabet.
+"answers.<index>.description": Le détail complet d'une réponses. Type: markdown.
+"answers.<index>.correct": Un boolean permettant de dire si cette réponse est correcte ou non. Type: boolean.
+"answers.<index>.explanation": L'explication complete permettant de comprendre pourquoi cette réponse est juste ou fausse avec un exemple de code si besoin. Type: markdown.
+"answers.<index>.links": Tableau contenant des liens vers des sites web permettant de comprendre l'explication. Type: array<url>.
+"multiple_correct_answers": Un boolean permettant de dire si cette question a plusieurs réponses possibles. Type: boolean.
+"explanation": Une explication complete de ce que la question souleve comme problématique. Type: markdown.
 
-## Code scaffolding
+Dans le format markdown, le code doit être entouré par ```.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Le test doit contenir 10 questions aléatoires, complexes et innovantes en anglais et provenir uniquement de la documentation officielle de spring: https://docs.spring.io/spring-framework/reference/index.html ou de la javadoc: https://docs.spring.io/spring-framework/docs/current/javadoc-api/
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Les thèmes à aborder sont:
+ Introduction au framework Spring :
+  Historique et architecture de Spring
+  Modules principaux de Spring (Core, Beans, Context, Expression Language)
+ Configuration Java :
+  Configuration de beans avec Java (@Configuration, @Bean)
+  Utilisation de @ComponentScan pour scanner les composants
+ Gestion des dépendances :
+  Injection de dépendances (constructeur, setter, champ)
+  Utilisation de @Autowired, @Qualifier
+  
