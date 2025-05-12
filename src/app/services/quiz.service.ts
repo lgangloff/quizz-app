@@ -12,12 +12,13 @@ export class QuizService {
   private questions: Question[] = [];
   private quizCompleted = new BehaviorSubject<boolean>(false);
   private quizResults = new BehaviorSubject<QuizResults | null>(null);
+  private allOriginsAPI = "https://api.allorigins.win/raw?url=";
 
   constructor(private http: HttpClient) {}
 
   // Charger les questions depuis le fichier JSON
   loadQuestions(url: string): Observable<Question[]> {
-    return this.http.get<Question[]>(url);
+    return this.http.get<Question[]>(this.allOriginsAPI + url);
   }
 
   // Définir les questions après chargement
