@@ -20,7 +20,7 @@ export class QuizComponent implements OnInit {
   currentQuestionIndex = 0;
   loading = false;
   quizCompleted = false;
-  quizUrl?: string;
+  quizUrl?: string = "./assets/data.json";
 
   constructor(private quizService: QuizService) {}
 

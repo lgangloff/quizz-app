@@ -3,7 +3,7 @@
 <div class="question-card">
     <div class="question-header">
       <h2>{{ question.question }}</h2>
-      <p class="question-description">{{ question.description }}</p>
+      <app-markdown-renderer class="question-description" [markdownContent]="question.description"></app-markdown-renderer>
       <div class="question-meta">
         <span class="tag difficulty" [ngClass]="question.difficulty.toLowerCase()">
           {{ question.difficulty }}
@@ -19,7 +19,7 @@
            [ngClass]="getAnswerClass(key)"
            (click)="!showCorrection && selectAnswer(key)">
         <div class="option-marker">{{ key | uppercase }}</div>
-        <div class="option-text">{{ question.answers[key].description }}</div>
+        <app-markdown-renderer class="option-text" [markdownContent]="question.answers[key].description"></app-markdown-renderer>
         <div class="option-check" *ngIf="isAnswerSelected(key)">
           <i class="fa fa-check"></i>
         </div>
@@ -35,7 +35,7 @@
         <div class="answer-explanations">
           <div *ngFor="let key of answerKeys" class="answer-explanation" [ngClass]="getAnswerClass(key)">
             <h4>Option {{ key | uppercase }}: {{ question.answers[key].description }}</h4>
-            <p [innerHTML]="question.answers[key].explanation"></p>
+            <app-markdown-renderer [markdownContent]="question.answers[key].explanation"></app-markdown-renderer>
             
             <div *ngIf="question.answers[key].links && question.answers[key].links!.length > 0" class="reference-links">
               <h5>Références:</h5>

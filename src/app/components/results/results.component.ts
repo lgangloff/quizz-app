@@ -28,6 +28,10 @@ export class ResultsComponent implements OnInit {
     });
   }
 
+  isAllAnswersCorrect(question: Question): boolean {
+    return this.quizService.isAllAnswersCorrect(question);
+  }
+
   onResetQuiz(): void {
     this.resetQuiz.emit();
   }

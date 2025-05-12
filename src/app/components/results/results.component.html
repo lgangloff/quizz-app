@@ -30,9 +30,9 @@
       <div class="questions-list">
         <div *ngFor="let question of questions; let i = index" class="question-review">
           <h4>Question {{ i + 1 }} <span class="question-status" 
-              [ngClass]="{'correct': question.answers[question.userAnswer!]?.correct === 'true', 
-                          'incorrect': question.answers[question.userAnswer!]?.correct === 'false'}">
-              {{ question.answers[question.userAnswer!]?.correct === 'true' ? 'Correcte' : 'Incorrecte' }}
+              [ngClass]="{'correct': isAllAnswersCorrect(question), 
+                          'incorrect': !isAllAnswersCorrect(question)}">
+              {{ isAllAnswersCorrect(question) ? 'Correcte' : 'Incorrecte' }}
             </span>
           </h4>
           

@@ -1,12 +1,9 @@
 // src/app/models/question.model.ts
 
-export interface Link {
-    url: string;
-  }
   
   export interface Answer {
     description: string;
-    correct: string;
+    correct: boolean;
     explanation: string;
     links?: string[];
   }
@@ -20,12 +17,12 @@ export interface Link {
     question: string;
     description: string;
     answers: Answers;
-    multiple_correct_answers: string;
+    multiple_correct_answers: boolean;
     explanation: string;
     tags: string[];
     category: string;
     difficulty: string;
-    userAnswer?: string; // Pour stocker la réponse de l'utilisateur
+    userAnswers: string[]; // Pour stocker la réponse de l'utilisateur
   }
   
   export interface QuizResults {

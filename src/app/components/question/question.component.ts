@@ -4,13 +4,14 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { Question } from '../../models/question.model';
 import { QuizService } from '../../services/quiz.service';
 import { CommonModule } from '@angular/common';
+import { MarkdownRendererComponent } from "../markdown-renderer/markdown-renderer.component";
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, MarkdownRendererComponent]
 })
 export class QuestionComponent implements OnChanges {
   @Input() question!: Question;
@@ -18,14 +19,13 @@ export class QuestionComponent implements OnChanges {
   @Output() answerSelected = new EventEmitter<{questionId: number, answer: string}>();
   
   answerKeys: string[] = [];
-  correctAnswer = '';
+  correctAnswers: string[] = [];
 
   constructor(private quizService: QuizService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['question'] && this.question) {
       this.answerKeys = Object.keys(this.question.answers);
-      this.correctAnswer = this.quizService.getCorrectAnswer(this.question);
     }
   }
 
@@ -37,11 +37,11 @@ export class QuestionComponent implements OnChanges {
   }
 
   isAnswerCorrect(answerKey: string): boolean {
-    return this.question.answers[answerKey].correct === 'true';
+    return this.question.answers[answerKey].correct;
   }
 
   isAnswerSelected(answerKey: string): boolean {
-    return this.question.userAnswer === answerKey;
+    return this.question.userAnswers?.indexOf(answerKey) !== -1;
   }
 
   getAnswerClass(answerKey: string): string {
